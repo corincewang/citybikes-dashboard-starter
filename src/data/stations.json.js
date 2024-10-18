@@ -14,15 +14,18 @@ async function json(url) {
       // station_data is a dictionary to store all station data
       const station_data = new Map();
       data.network.stations.forEach(station => {
-          // inner dictionary for each information field
-          const station_info = new Map();
-  
-          // CHALLENGE 2.1
-          // Your code here
-          // Add information_field:quantity to the inner dictionary using .set() 
-  
-          // Adds to the station_data dictionary with the key-value pair of name:info (where info is a dictionary)
-          station_data.set(station.name, station_info);
+        // inner dictionary for each information field
+        const station_info = new Map();
+
+        // CHALLENGE 2.1
+        // Add information_field:quantity to the inner dictionary using .set() 
+        station_info.set('free_bikes', station.free_bikes);
+        station_info.set('empty_slots', station.empty_slots);
+        station_info.set('latitude', station.latitude);
+        station_info.set('longitude', station.longitude);
+
+        // Adds to the station_data dictionary with the key-value pair of name:info (where info is a dictionary)
+        station_data.set(station.name, station_info);
       });
   
       // Convert Map to plain object for serialization so stringify can be used
